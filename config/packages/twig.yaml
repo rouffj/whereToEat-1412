@@ -1,5 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        work_address:
+            amien: 90 Rue de la Vallée, 80000 Amiens
+            caen: 4 quai amiral Hamelin 14000 Caen
 
 when@test:
     twig:
