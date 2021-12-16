@@ -94,4 +94,20 @@ class Address
 
         return $this;
     }
+
+    static public function fromGoogleMaps(string $fullAddress)
+    {
+        // 18 Bd d'Alsace Lorraine, 80000 Amiens, France
+        $result = explode(',', $fullAddress);
+
+        $address = new self();
+        $city = explode(' ', trim($result[1]));
+        $address
+            ->setStreet($result[0])
+            ->setZipCode($city[0])
+            ->setCity($city[1])
+        ;
+
+        return $address;
+    }
 }

@@ -43,6 +43,19 @@ class Restaurant
         $this->id = $id;
     }
 
+    static public function fromGoogleMaps(array $restaurantInfo)
+    {
+        $restaurant = new self();
+        $restaurant
+            ->setName($restaurantInfo['name'])
+            ->setAddress(Address::fromGoogleMaps($restaurantInfo['formatted_address']))
+            ->setDislikes(0)
+            ->setLikes($restaurantInfo['user_ratings_total'])
+        ;
+
+        return $restaurant;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
