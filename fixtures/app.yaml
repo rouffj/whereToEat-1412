@@ -1,0 +1,12 @@
+App\Entity\Address:
+  address_{1..20}:
+    street: '<streetAddress()>'
+    zipCode: '<numerify("#####")>'
+    city: '<city()>'
+
+App\Entity\Restaurant:
+  restaurant_{1..20}:
+    name: '<company()>'
+    likes: '<numberBetween(0, 200)>'
+    dislikes: '<numberBetween(0, 100)>'
+    address: '@address_<current()>' # https://github.com/nelmio/alice/blob/master/doc/relations-handling.md#multiple-references

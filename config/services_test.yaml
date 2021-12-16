@@ -1,0 +1,5 @@
+services:
+  App\Mailer\SmtpMailer: '@App\Mailer\FakeMailer'
+
+  App\Mailer\FakeMailer:
+    class: App\Mailer\FakeMailer

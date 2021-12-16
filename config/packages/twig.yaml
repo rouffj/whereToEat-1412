@@ -4,6 +4,9 @@ twig:
         work_address:
             amien: 90 Rue de la Vallée, 80000 Amiens
             caen: 4 quai amiral Hamelin 14000 Caen
+    form_theme:
+        - bootstrap_3_horizontal_layout.html.twig
+        - form_theme.html.twig
 
 when@test:
     twig:

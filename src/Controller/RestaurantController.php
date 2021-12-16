@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\InMemoryRestaurantRepository;
+use App\Repository\RestaurantRepository;
 use ProxyManager\ProxyGenerator\ValueHolder\MethodGenerator\Constructor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,9 +16,10 @@ class RestaurantController extends AbstractController
 {
     private $restaurantRepository;
 
-    public function __construct()
+    public function __construct(RestaurantRepository $restaurantRepository)
     {
-        $this->restaurantRepository = new InMemoryRestaurantRepository();
+        //$this->restaurantRepository = new InMemoryRestaurantRepository();
+        $this->restaurantRepository = $restaurantRepository;
     }
 
     /**
@@ -26,6 +28,7 @@ class RestaurantController extends AbstractController
     public function index(): Response
     {
         $restaurants = $this->restaurantRepository->findAll();
+        #dump($restaurants);die;
 
         return $this->render('restaurant/index.html.twig', [
             'restaurants' => $restaurants,

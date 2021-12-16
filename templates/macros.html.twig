@@ -18,3 +18,11 @@
                 <div class="clearfix"></div>
     </div>
 {% endmacro %}
+
+{% macro alert() %}
+    {% for level, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="alert alert-{{ level }}">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+{% endmacro %}

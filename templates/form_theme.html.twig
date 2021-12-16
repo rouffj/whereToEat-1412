@@ -1,0 +1,28 @@
+{% block text_label %}
+  <label class="col-sm-2 control-label required">
+  {% if label %}
+    {{ label|upper }}
+  {% else %}
+      {{ name|upper }}
+  {% endif %}
+  </label>
+{% endblock %}
+
+{# email|text|tel|... #}
+{% block email_label %}
+  {{ name|upper }}
+{% endblock %}
+
+{#
+{% block email_widget %}
+    {{ dump() }}
+        <input type="text" name="{{ full_name }}"/>
+{% endblock %}
+#}
+
+{# override a specific field based on its id _{{ id }} #}
+{#
+{% block _coworker_firstName_label %}
+     dump()
+{% endblock %}
+#}
