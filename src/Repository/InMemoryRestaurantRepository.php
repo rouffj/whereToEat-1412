@@ -7,7 +7,7 @@ use App\Entity\Address;
 
 
 
-class InMemoryRestaurantRepository
+class InMemoryRestaurantRepository implements RestaurantRepositoryInterface
 {
     public function findOneById($id): ?Restaurant
     {
@@ -19,7 +19,7 @@ class InMemoryRestaurantRepository
         return reset($restaurants);
     }
 
-    public function findAll(): array
+    public function findAll()
     {
         /*
         $r1 = new Restaurant(1);

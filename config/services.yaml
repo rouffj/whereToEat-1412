@@ -23,3 +23,19 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    #App\Repository\RestaurantRepository: '@app.restaurant_repo'
+
+
+    App\Repository\RestaurantRepositoryInterface: '@App\Repository\RestaurantRepository'
+
+    # déclaration partielle.
+    App\Repository\RestaurantRepository:
+        arguments:
+            $tableName: '%env(TABLE_NAME)%'
+
+    App\Repository\InMemoryRestaurantRepository:
+        
+    # App\Repository\RestaurantRepository:
+    #     arguments:
+    #         $registry: '@Doctrine\Persistence\ManagerRegistry'
