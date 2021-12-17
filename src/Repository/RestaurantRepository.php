@@ -21,7 +21,8 @@ class RestaurantRepository extends ServiceEntityRepository implements Restaurant
 
     public function findOneById($id): ?Restaurant
     {
-        return $this->findOneBy(['id' => $id]);
+        return parent::findOneById($id);
+        //return $this->findOneBy(['id' => $id]);
     }
 
     // /**

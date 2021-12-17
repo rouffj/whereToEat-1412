@@ -19,8 +19,7 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li {% if 'restaurant_list' == app.request.attributes.get('_route') %}class="active"{% endif %}><a href="/">Home</a></li>
-            <li {% if 'coworker_login' == app.request.attributes.get('_route') %}class="active"{% endif %}><a href="/login">Login</a></li>
-            <li {% if 'coworker_register' == app.request.attributes.get('_route') %}class="active"{% endif %}><a href="/register">Register</a></li>
+            {{ macros.render_signup_menu() }}
           </ul>
         </nav>
         <h3 class="text-muted">WhereToEat</h3>

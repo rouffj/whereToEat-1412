@@ -10,3 +10,12 @@ App\Entity\Restaurant:
     likes: '<numberBetween(0, 200)>'
     dislikes: '<numberBetween(0, 100)>'
     address: '@address_<current()>' # https://github.com/nelmio/alice/blob/master/doc/relations-handling.md#multiple-references
+
+App\Entity\Coworker:
+  coworker_{1..20}:
+    firstName: <firstName()>
+    lastName: <lastName()>
+    password: '\$2y\$13\$RIaiehbZQpupVQlIcKPONOkPbTquMR8014AJV6TjLP/mJwNTftRju' #testtest
+    email: <userName()>\@gmail.com
+    #email: '<sprintf("%s.%s@businessdecision.com", @self->firstname, @self->lastname)>'
+    restaurants: ['@restaurant_<current()>']

@@ -26,7 +26,6 @@ services:
 
     #App\Repository\RestaurantRepository: '@app.restaurant_repo'
 
-
     App\Repository\RestaurantRepositoryInterface: '@App\Repository\RestaurantRepository'
 
     # déclaration partielle.

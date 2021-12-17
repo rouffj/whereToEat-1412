@@ -38,6 +38,12 @@ class Restaurant
      */
     private $address;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Coworker::class, inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $coworker;
+
     public function __construct(int $id = null)
     {
         $this->id = $id;
@@ -105,6 +111,18 @@ class Restaurant
     public function setAddress(Address $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCoworker(): ?Coworker
+    {
+        return $this->coworker;
+    }
+
+    public function setCoworker(?Coworker $coworker): self
+    {
+        $this->coworker = $coworker;
 
         return $this;
     }

@@ -37,13 +37,14 @@ class RestaurantImportCommand extends Command
 
         $answer = $io->ask('Do you want to delete previous restaurants in the DB? (yes/no)', 'no', function($answer) {
             $answer = strtolower($answer);
-            
+
             if (!in_array($answer, ['yes', 'no'])) {
                 throw new \InvalidArgumentException('The answer should be "yes" or "no"');
             }
 
             return $answer;
         });
+        
         if ('yes' === $answer) {
             $this->entityManager->getConnection()->executeStatement('DELETE FROM restaurant;');
             $this->entityManager->getConnection()->executeStatement('DELETE FROM address;');

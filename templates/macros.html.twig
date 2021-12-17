@@ -1,3 +1,13 @@
+{% macro render_signup_menu()  %}
+    {% if app.user %}
+        <li><a href="/profile">{{ app.user.email }}</a></li>
+        <li><a href="/logout">Logout</a></li>
+    {% else %}
+        <li {% if app.request.attributes.get('_route') == 'app_login' %} class="active"{% endif %}><a href="{{ path('app_login') }}">Login</a></li>
+        <li {% if app.request.attributes.get('_route') == 'coworker_register' %} class="active"{% endif %}><a href="{{ path('coworker_register') }}">Register</a></li>
+    {% endif %}
+{% endmacro %}
+
 {% macro show_restaurant(restaurant, size='350x250') %}
     <div class="restaurant">
                 <div class="pull-left">
@@ -6,6 +16,7 @@
                 <div class="pull-left resto-details">
                   <h4><a href="{{ path('restaurant_show', {id: restaurant.id}) }}">{{ restaurant.name }}</a></h4>
                   <p>{{ restaurant.address.street }} {{ restaurant.address.zipCode }} {{ restaurant.address.city }}</p>
+                  {% if is_granted('ROLE_RESTAURANT_VOTE') %}
                   <p>
                       <a href="{{ path('restaurant_vote', {type: 1, id: restaurant.id}) }}" type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-thumbs-up"></span> {{ restaurant.likes }}
@@ -14,6 +25,17 @@
                         <span class="glyphicon glyphicon-thumbs-down"></span> {{ restaurant.dislikes }}
                       </a>
                   </p>
+                  {% endif %}
+                  <p>Proposé par {{ restaurant.coworker.firstName }}.</p>
+                  
+                  <p>
+                    {% if is_granted('RESTAURANT_EDIT', restaurant) %}
+                    <a href="#">Edit</a> |
+                    {% endif %}
+                    {% if is_granted('RESTAURANT_DELETE', restaurant) %}
+                   <a href="#">Delete</a></p>
+                   {% endif %}
+                  
                 </div>
                 <div class="clearfix"></div>
     </div>
