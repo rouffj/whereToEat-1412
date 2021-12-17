@@ -48,7 +48,6 @@ class RestaurantController extends AbstractController
 
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->add('save', SubmitType::class);
-        //$eventDispatcher->dispatch(new RestaurantAddedEvent($restaurant, $coworker), 'restaurant_added');
 
         $form->handleRequest($request);
 
@@ -56,9 +55,9 @@ class RestaurantController extends AbstractController
             $entityManager->persist($restaurant);
             $entityManager->flush();
 
+            $eventDispatcher->dispatch(new RestaurantAddedEvent($restaurant, $restaurant->getCoworker()), 'restaurant_added');
             dump($restaurant);
             return $this->redirectToRoute('restaurant_show', ['id' => $restaurant->getId()]);
-            // Insert in DB
         }
 
         return $this->render('restaurant/new.html.twig', [
